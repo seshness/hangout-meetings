@@ -8,7 +8,17 @@
   <Content type="html">
     <![CDATA[
       <script src="//plus.google.com/hangouts/_/api/v1/hangout.js"></script>
-      <script src="meeting-controller.js"></script>
+      <script type="text/javascript">
+        gadgets.util.registerOnLoadHandler(function() {
+          gapi.hangout.onApiReady.add(function(eventObj){
+            if (eventObj.isApiReady) {
+              console.log('Gadget: Application ready!')
+              window.postMessage('ready', '*');
+            }
+          });
+        });
+      </script>
+
     ]]>
   </Content>
 </Module>
